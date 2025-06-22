@@ -1,19 +1,26 @@
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+import { Col, Button, Card } from "react-bootstrap";
+import "../index.css";
 
-const ItemCards = ({ citas }) => {
+const ItemCards = ({ cita }) => {
   return (
     <Col>
-      <Card>
-        <Card.Img variant="top" src="holder.js/100px180" />
+      <Card className="text-center">
+        <Card.Header className="d-flex align-items-center gap-4">
+          <div className="circuloCeleste"></div>
+          <div className="text-start">
+            <Card.Text className="mb-1 fw-bold">
+              Mascota: {cita.nombreMascota}
+            </Card.Text>
+            <Card.Text className="mb-0">Dueño: {cita.nombreDuenio}</Card.Text>
+          </div>
+        </Card.Header>
+
         <Card.Body>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
+          <Card.Text></Card.Text>
         </Card.Body>
+        <Card.Footer>
+          <Button variant="danger">Borrar</Button>
+        </Card.Footer>
       </Card>
     </Col>
   );

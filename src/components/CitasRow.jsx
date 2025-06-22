@@ -11,7 +11,7 @@ const CitasRow = ({ citas }) => {
       )}
       {citas.length !== 0 &&
         citas.map((cita, indice) => (
-          <ColumasCard key={indice} citas={citas}></ColumasCard>
+          <ColumasCard key={indice} cita={cita}></ColumasCard>
         ))}
     </section>
   );

@@ -1,12 +1,11 @@
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
+import { Container, Row } from "react-bootstrap";
 import ItemCards from "./ItemCards";
 
-const ColumasCard = ({ citas }) => {
+const ColumasCard = ({ cita }) => {
   return (
     <Container>
       <Row>
-        <ItemCards citas={citas}></ItemCards>
+        <ItemCards cita={cita}></ItemCards>
       </Row>
     </Container>
   );
