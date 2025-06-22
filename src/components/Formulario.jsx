@@ -9,6 +9,7 @@ const Formulario = () => {
   const [fecha, setFecha] = useState("");
   const [hora, setHora] = useState("");
   const [errors, setErrors] = useState({});
+  const [citas, setCitas] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,6 +38,8 @@ const Formulario = () => {
     if (Object.keys(nuevosErrores).length === 0) {
       alert("Formulario válido ✅");
       alert("Datos enviados");
+      // guardo la cita en el array la citas
+      setCitas([...citas, { nombreMascota, nombreDuenio, fecha, hora }]);
       // Limpiar el formulario
       setNombreMascota("");
       setNombreDuenio("");
@@ -50,7 +53,7 @@ const Formulario = () => {
 
   return (
     <>
-      <section className="container sombra bg-info-subtle rounded mt-3 w-md-50">
+      <section className="container sombra bg-info-subtle rounded mt-3">
         <Form className="py-3" onSubmit={handleSubmit}>
           <Form.Text className="text-muted">
             Los campos con un (<span className="text-danger">*</span>) son
@@ -106,6 +109,7 @@ const Formulario = () => {
               onChange={(e) => setFecha(e.target.value)}
               isInvalid={!!errors.fecha}
               isValid={fecha && !errors.fecha}
+              required
             />
             <Form.Control.Feedback type="invalid">
               {errors.fecha}
@@ -123,6 +127,7 @@ const Formulario = () => {
               onChange={(e) => setHora(e.target.value)}
               isInvalid={!!errors.hora}
               isValid={hora && !errors.hora}
+              required
             />
             <Form.Control.Feedback type="invalid">
               {errors.hora}
@@ -134,9 +139,7 @@ const Formulario = () => {
           </Button>
         </Form>
       </section>
-      <section>
-        <CitasRow></CitasRow>
-      </section>
+      <CitasRow citas={citas}></CitasRow>
     </>
   );
 };

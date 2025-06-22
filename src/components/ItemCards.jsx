@@ -1,9 +1,22 @@
-const ItemCards = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+
+const ItemCards = ({ citas }) => {
+  return (
+    <Col>
+      <Card>
+        <Card.Img variant="top" src="holder.js/100px180" />
+        <Card.Body>
+          <Card.Text>
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </Card.Text>
+          <Button variant="primary">Go somewhere</Button>
+        </Card.Body>
+      </Card>
+    </Col>
+  );
 };
 
 export default ItemCards;
