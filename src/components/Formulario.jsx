@@ -4,37 +4,32 @@ import "../index.css";
 import CitasRow from "./CitasRow";
 
 const Formulario = () => {
-  const [nombre, setNombre] = useState("");
-  const [apellido, setApellido] = useState("");
-  const [dni, setDni] = useState("");
-  const [email, setEmail] = useState("");
+  const [nombreMascota, setNombreMascota] = useState("");
+  const [nombreDuenio, setNombreDuenio] = useState("");
+  const [fecha, setFecha] = useState("");
+  const [hora, setHora] = useState("");
   const [errors, setErrors] = useState({});
-
-  const validarEmail = (valor) => {
-    const regExp =
-      /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-    return regExp.test(valor);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const nuevosErrores = {};
 
-    if (nombre.trim().length < 2 || nombre.trim().length > 50) {
-      nuevosErrores.nombre = "El nombre debe tener entre 2 y 50 caracteres.";
+    if (nombreMascota.trim().length < 2 || nombreMascota.trim().length > 50) {
+      nuevosErrores.nombreMascota =
+        "Este campo debe tener entre 2 y 50 caracteres.";
     }
 
-    if (apellido.trim().length < 2 || apellido.trim().length > 50) {
-      nuevosErrores.apellido =
-        "El apellido debe tener entre 2 y 50 caracteres.";
+    if (nombreDuenio.trim().length < 2 || nombreDuenio.trim().length > 50) {
+      nuevosErrores.nombreDuenio =
+        "Este campo debe tener entre 2 y 50 caracteres.";
     }
 
-    if (dni.trim().length < 7 || dni.trim().length > 10) {
-      nuevosErrores.dni = "El DNI debe tener entre 7 y 10 dígitos.";
+    if (!fecha) {
+      nuevosErrores.fecha = "La fecha es obligatoria.";
     }
 
-    if (!validarEmail(email)) {
-      nuevosErrores.email = "El email no es válido.";
+    if (!hora) {
+      nuevosErrores.hora = "La hora es obligatoria.";
     }
 
     setErrors(nuevosErrores);
@@ -42,6 +37,12 @@ const Formulario = () => {
     if (Object.keys(nuevosErrores).length === 0) {
       alert("Formulario válido ✅");
       alert("Datos enviados");
+      // Limpiar el formulario
+      setNombreMascota("");
+      setNombreDuenio("");
+      setFecha("");
+      setHora("");
+      setErrors({});
     } else {
       alert("Completar todos los datos ❌");
     }
@@ -58,84 +59,78 @@ const Formulario = () => {
 
           <Form.Group>
             <Form.Label>
-              Nombre: <span className="text-danger">*</span>
+              Nombre de la mascota: <span className="text-danger">*</span>
+            </Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Firulais"
+              value={nombreMascota}
+              onChange={(e) => setNombreMascota(e.target.value)}
+              isInvalid={!!errors.nombreMascota}
+              isValid={nombreMascota && !errors.nombreMascota}
+              minLength={2}
+              maxLength={50}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.nombreMascota}
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>
+              Nombre del dueño: <span className="text-danger">*</span>
             </Form.Label>
             <Form.Control
               type="text"
               placeholder="Marcos"
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
-              isInvalid={!!errors.nombre}
-              isValid={nombre && !errors.nombre}
+              value={nombreDuenio}
+              onChange={(e) => setNombreDuenio(e.target.value)}
+              isInvalid={!!errors.nombreDuenio}
+              isValid={nombreDuenio && !errors.nombreDuenio}
               minLength={2}
               maxLength={50}
-              required
             />
             <Form.Control.Feedback type="invalid">
-              {errors.nombre}
+              {errors.nombreDuenio}
             </Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group>
             <Form.Label>
-              Apellido: <span className="text-danger">*</span>
+              Fecha: <span className="text-danger">*</span>
             </Form.Label>
             <Form.Control
-              type="text"
-              placeholder="Tebis"
-              value={apellido}
-              onChange={(e) => setApellido(e.target.value)}
-              isInvalid={!!errors.apellido}
-              isValid={apellido && !errors.apellido}
-              minLength={2}
-              maxLength={50}
-              required
-            />
-            <Form.Control.Feedback type="invalid">
-              {errors.apellido}
-            </Form.Control.Feedback>
-          </Form.Group>
-
-          <Form.Group>
-            <Form.Label>
-              DNI: <span className="text-danger">*</span>
-            </Form.Label>
-            <Form.Control
-              type="number"
+              type="date"
               placeholder="xx xxx xxx"
-              value={dni}
-              onChange={(e) => setDni(e.target.value)}
-              isInvalid={!!errors.dni}
-              isValid={dni && !errors.dni}
-              minLength={7}
-              maxLength={10}
-              required
+              value={fecha}
+              onChange={(e) => setFecha(e.target.value)}
+              isInvalid={!!errors.fecha}
+              isValid={fecha && !errors.fecha}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.dni}
+              {errors.fecha}
             </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group>
             <Form.Label>
-              Email: <span className="text-danger">*</span>
+              Hora: <span className="text-danger">*</span>
             </Form.Label>
             <Form.Control
-              type="email"
-              placeholder="ejemplo@gmail.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              isInvalid={!!errors.email}
-              isValid={email && !errors.email}
-              required
+              type="time"
+              placeholder="xx xxx xxx"
+              value={hora}
+              onChange={(e) => setHora(e.target.value)}
+              isInvalid={!!errors.hora}
+              isValid={hora && !errors.hora}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.email}
+              {errors.hora}
             </Form.Control.Feedback>
           </Form.Group>
 
-          <Button variant="success" type="submit">
-            Enviar
+          <Button variant="info" type="submit" className="mt-3 d-flex mx-auto">
+            Agregar nueva cita
           </Button>
         </Form>
       </section>
