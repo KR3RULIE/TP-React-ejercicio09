@@ -15,8 +15,10 @@ const ItemCards = ({ cita }) => {
           </div>
         </Card.Header>
 
-        <Card.Body>
-          <Card.Text></Card.Text>
+        <Card.Body className="text-start ms-5">
+          <Card.Text>Fechas: {cita.fecha}</Card.Text>
+          <Card.Text>Hora: {cita.hora}</Card.Text>
+          <Card.Text>Sintomas: {cita.sintomas}</Card.Text>
         </Card.Body>
         <Card.Footer>
           <Button variant="danger">Borrar</Button>

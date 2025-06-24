@@ -8,6 +8,7 @@ const Formulario = () => {
   const [nombreDuenio, setNombreDuenio] = useState("");
   const [fecha, setFecha] = useState("");
   const [hora, setHora] = useState("");
+  const [sintomas, setSintomas] = useState("");
   const [errors, setErrors] = useState({});
   const [citas, setCitas] = useState([]);
 
@@ -33,18 +34,27 @@ const Formulario = () => {
       nuevosErrores.hora = "La hora es obligatoria.";
     }
 
+    if (sintomas.trim().length < 2 || nombreDuenio.trim().length > 50) {
+      nuevosErrores.sintomas =
+        "Es campo es necesario para saber los detalles de la condición del animal";
+    }
+
     setErrors(nuevosErrores);
 
     if (Object.keys(nuevosErrores).length === 0) {
       alert("Formulario válido ✅");
       alert("Datos enviados");
       // guardo la cita en el array la citas
-      setCitas([...citas, { nombreMascota, nombreDuenio, fecha, hora }]);
+      setCitas([
+        ...citas,
+        { nombreMascota, nombreDuenio, fecha, hora, sintomas },
+      ]);
       // Limpiar el formulario
       setNombreMascota("");
       setNombreDuenio("");
       setFecha("");
       setHora("");
+      setSintomas("");
       setErrors({});
     } else {
       alert("Completar todos los datos ❌");
@@ -61,7 +71,7 @@ const Formulario = () => {
           </Form.Text>
 
           <Form.Group>
-            <Form.Label>
+            <Form.Label className="mt-2">
               Nombre de la mascota: <span className="text-danger">*</span>
             </Form.Label>
             <Form.Control
@@ -73,6 +83,7 @@ const Formulario = () => {
               isValid={nombreMascota && !errors.nombreMascota}
               minLength={2}
               maxLength={50}
+              required
             />
             <Form.Control.Feedback type="invalid">
               {errors.nombreMascota}
@@ -80,7 +91,7 @@ const Formulario = () => {
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>
+            <Form.Label className="mt-2">
               Nombre del dueño: <span className="text-danger">*</span>
             </Form.Label>
             <Form.Control
@@ -92,6 +103,7 @@ const Formulario = () => {
               isValid={nombreDuenio && !errors.nombreDuenio}
               minLength={2}
               maxLength={50}
+              required
             />
             <Form.Control.Feedback type="invalid">
               {errors.nombreDuenio}
@@ -99,7 +111,7 @@ const Formulario = () => {
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>
+            <Form.Label className="mt-2">
               Fecha: <span className="text-danger">*</span>
             </Form.Label>
             <Form.Control
@@ -117,7 +129,7 @@ const Formulario = () => {
           </Form.Group>
 
           <Form.Group>
-            <Form.Label>
+            <Form.Label className="mt-2">
               Hora: <span className="text-danger">*</span>
             </Form.Label>
             <Form.Control
@@ -131,6 +143,24 @@ const Formulario = () => {
             />
             <Form.Control.Feedback type="invalid">
               {errors.hora}
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label className="mt-2">
+              Sintomas: <span className="text-danger">*</span>
+            </Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Dolor de pasa, vomito, etc."
+              value={sintomas}
+              onChange={(e) => setSintomas(e.target.value)}
+              isInvalid={!!errors.sintomas}
+              isValid={hora && !errors.sintomas}
+              required
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.sintomas}
             </Form.Control.Feedback>
           </Form.Group>
 
