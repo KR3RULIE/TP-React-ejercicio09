@@ -3,8 +3,8 @@ import "../index.css";
 
 const ItemCards = ({ cita }) => {
   return (
-    <Col>
-      <Card className="text-center">
+    <Col sm={12} md={6} lg={4}>
+      <Card className="text-center mb-4">
         <Card.Header className="d-flex align-items-center gap-4">
           <div className="circuloCeleste"></div>
           <div className="text-start">
@@ -15,7 +15,7 @@ const ItemCards = ({ cita }) => {
           </div>
         </Card.Header>
 
-        <Card.Body className="text-start ms-5">
+        <Card.Body className="text-start ms-3">
           <Card.Text>Fechas: {cita.fecha}</Card.Text>
           <Card.Text>Hora: {cita.hora}</Card.Text>
           <Card.Text>Sintomas: {cita.sintomas}</Card.Text>

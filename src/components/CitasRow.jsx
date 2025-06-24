@@ -2,7 +2,7 @@ import ColumasCard from "./ColumasCard";
 
 const CitasRow = ({ citas }) => {
   return (
-    <section className="container sombra bg-info-subtle rounded mt-3">
+    <section className="container sombra bg-info-subtle rounded my-3">
       <h3 className="text-center text-danger">Listado de citas</h3>
       {citas.length === 0 && (
         <p className="text-center text-warning fs-5 fw-bold fst-italic">
