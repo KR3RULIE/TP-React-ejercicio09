@@ -1,7 +1,7 @@
 import { Col, Button, Card } from "react-bootstrap";
 import "../index.css";
 
-const ColumasCard = ({ cita }) => {
+const ColumasCard = ({ cita, indice, borrarCita }) => {
   return (
     <Col sm={12} md={6} lg={4}>
       <Card className="text-center mb-4">
@@ -21,7 +21,9 @@ const ColumasCard = ({ cita }) => {
           <Card.Text>Sintomas: {cita.sintomas}</Card.Text>
         </Card.Body>
         <Card.Footer>
-          <Button variant="danger">Borrar</Button>
+          <Button variant="danger" onClick={() => borrarCita(indice)}>
+            Borrar
+          </Button>
         </Card.Footer>
       </Card>
     </Col>

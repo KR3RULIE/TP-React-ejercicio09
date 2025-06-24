@@ -61,6 +61,13 @@ const Formulario = () => {
     }
   };
 
+  const borrarCita = (indiceDeLaCitaABorrar) => {
+    const citasFiltradas = citas.filter(
+      (cita, indice) => indice !== indiceDeLaCitaABorrar
+    );
+    setCitas(citasFiltradas);
+  };
+
   return (
     <>
       <section className="container sombra bg-info-subtle rounded mt-3">
@@ -169,7 +176,7 @@ const Formulario = () => {
           </Button>
         </Form>
       </section>
-      <CitasRow citas={citas}></CitasRow>
+      <CitasRow citas={citas} borrarCita={borrarCita}></CitasRow>
     </>
   );
 };

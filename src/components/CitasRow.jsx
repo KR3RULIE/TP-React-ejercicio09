@@ -1,7 +1,7 @@
 import { Container, Row } from "react-bootstrap";
 import ColumasCard from "./ColumasCard";
 
-const CitasRow = ({ citas }) => {
+const CitasRow = ({ citas, borrarCita }) => {
   return (
     <section className="container sombra bg-info-subtle rounded my-3">
       <h3 className="text-center text-danger">Listado de citas</h3>
@@ -14,7 +14,12 @@ const CitasRow = ({ citas }) => {
         <Container>
           <Row>
             {citas.map((cita, indice) => (
-              <ColumasCard key={indice} cita={cita} />
+              <ColumasCard
+                key={indice}
+                cita={cita}
+                indice={indice}
+                borrarCita={borrarCita}
+              />
             ))}
           </Row>
         </Container>
