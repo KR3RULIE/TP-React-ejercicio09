@@ -1,3 +1,4 @@
+import { Container, Row } from "react-bootstrap";
 import ColumasCard from "./ColumasCard";
 
 const CitasRow = ({ citas }) => {
@@ -9,10 +10,15 @@ const CitasRow = ({ citas }) => {
           No hay citas registradas.
         </p>
       )}
-      {citas.length !== 0 &&
-        citas.map((cita, indice) => (
-          <ColumasCard key={indice} cita={cita}></ColumasCard>
-        ))}
+      {citas.length !== 0 && (
+        <Container>
+          <Row>
+            {citas.map((cita, indice) => (
+              <ColumasCard key={indice} cita={cita} />
+            ))}
+          </Row>
+        </Container>
+      )}
     </section>
   );
 };
