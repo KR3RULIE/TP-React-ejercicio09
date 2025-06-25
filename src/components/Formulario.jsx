@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import "../index.css";
 import CitasRow from "./CitasRow";
@@ -10,7 +10,18 @@ const Formulario = () => {
   const [hora, setHora] = useState("");
   const [sintomas, setSintomas] = useState("");
   const [errors, setErrors] = useState({});
-  const [citas, setCitas] = useState([]);
+
+  const citasLocalstorage =
+    JSON.parse(localStorage.getItem("listaCitas")) || [];
+
+  const [citas, setCitas] = useState(citasLocalstorage);
+
+  useEffect(() => {
+    //todas las lineas que escriba aqui se ejecutan
+    //automaticamente en montaje y actualizacion del componente
+    console.log("desde useEffect");
+    localStorage.setItem("listaCitas", JSON.stringify(citas));
+  }, [citas]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
