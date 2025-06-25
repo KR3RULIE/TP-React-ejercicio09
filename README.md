@@ -8,6 +8,7 @@ Esta es una aplicación web desarrollada con React que permite gestionar citas e
 - CSS (opcional)
 - JavaScript
 - React
+- React Bootstrap
 
 ## Cómo usar
 
@@ -32,9 +33,9 @@ npm run dev
 ## 👨‍💻 Autor
 
 **Marcos Joel Tebis**  
-Proyecto personal de práctica con ejercicios básicos en JavaScript.  
+Proyecto personal de práctica con ejercicios básicos en JavaScript, CSS, React y React Bootstrap.  
 ¡Gracias por visitar este repositorio y feliz código!
 
 ---
 
-¡Sigue practicando y mejorando tus habilidades en JavaScript! 💪
+¡Sigue practicando y mejorando tus habilidades en Desarrollo Web! 💪
